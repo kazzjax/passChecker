@@ -1,1 +1,21 @@
+const readline = require("readline-sync");
 
+let userPass;
+let validPass;
+
+do {
+  userPass = readline.question("Please choose a valid password: ");
+  validPass = userPass.length >= 8; 
+  let hasUpperCase = false;
+  let includesNum = false;
+  for (let i = 0; i < userPass.length; i++) 
+    {let character = userPass[i];
+    if (character >= "A" && character <= "Z") 
+    {hasUpperCase = true;}
+    if (character >= "0" && character <= "9") 
+    {includesNum = true;}}
+    validPass = validPass && hasUpperCase && includesNum;
+    if (!validPass) 
+    {console.log("Invalid password! It must be at least 8 characters long, contain an uppercase letter, and include at least one number.");}
+} while (!validPass);
+console.log("New Password is valid.");
